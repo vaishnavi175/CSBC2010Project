@@ -1,0 +1,16 @@
+@startuml
+class VotingSmartContract {
+  +registerVoter(address voterAddress) public
+  +castVote(uint256 voteSelection) public
+  +getRegisteredVoters() public view returns (address[] memory)
+  +getRegisteredVotersCount() public view returns (uint256)
+  -voters: mapping(address => bool)
+  -votes: mapping(address => uint256)
+}
+
+class Owner {
+  +registerVoter(address voterAddress) public
+}
+
+VotingSmartContract -> Owner: can only be called by owner
+@enduml
